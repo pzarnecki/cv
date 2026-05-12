@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przemysław Żarnecki - CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --navy: #0d1b2a;
+            --cyan: #00c2cb;
+            --cyan2: #00f0ff;
+            --light: #f4f7fa;
+            --muted: #6b7a8d;
+            --accent: #ff5c35;
+            --border: #e2e8f0;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+        @media print {
+            @page {
+                size: A4;
+                margin: 12mm;
+            }
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .cv-wrap {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+                margin: 0;
+                min-height: auto;
+            }
+            .sidebar {
+                background: #fff !important;
+                color: var(--navy) !important;
+                border-right: 1px solid var(--border);
+            }
+            .sidebar .contact-row,
+            .sidebar .contact-row a {
+                color: var(--navy) !important;
+            }
+            .sidebar .contact-icon {
+                color: var(--cyan) !important;
+            }
+        }
+        .cv-wrap {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--light);
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+        .sidebar {
+            background: var(--navy);
+            color: #fff;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        .avatar-area {
+            text-align: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .avatar-ring {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid var(--cyan);
+            margin: 0 auto 0.8rem;
+            background: center/cover;
+            background-image: url('1600937732186.jpeg');
+            object-fit: cover;
+        }
+        .sidebar-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .sidebar-role {
+            font-size: 0.65rem;
+            color: var(--cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            opacity: 0.85;
+        }
+        .s-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.32rem;
+        }
+        .s-label {
+            font-size: 0.6rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            font-weight: 500;
+            margin-bottom: 0.1rem;
+            opacity: 0.85;
+        }
+        .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            font-size: 0.73rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.4;
+        }
+        .contact-icon {
+            width: 14px;
+            height: 14px;
+            flex: 0 0 14px;
+            margin-top: 2px;
+            color: var(--cyan2);
+            opacity: 0.95;
+        }
+        .contact-row a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+        }
+        .contact-row a:hover {
+            color: rgba(255,255,255,0.95);
+        }
+        .skill-tag {
+            display: inline-block;
+            background: rgba(0,194,203,0.12);
+            border: 1px solid rgba(0,194,203,0.3);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.67rem;
+            padding: 2px 7px;
+            border-radius: 20px;
+            margin: 2px;
+        }
+        .skill-tag.hot {
+            background: rgba(0,194,203,0.25);
+            border-color: rgba(0,194,203,0.6);
+            font-weight: 500;
+        }
+        .lang-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.73rem;
+            color: rgba(255,255,255,0.85);
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .lang-lvl {
+            font-size: 0.6rem;
+            color: var(--cyan);
+            letter-spacing: 1px;
+        }
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+        .main {
+            background: #fff;
+            padding: 1.75rem 2rem 2rem 2.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+        .main-header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 1rem;
+        }
+        .main-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+        .main-name span {
+            color: var(--cyan);
+        }
+        .main-title {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        .bio {
+            font-size: 0.82rem;
+            color: #4a5568;
+            line-height: 1.7;
+            border-left: 3px solid var(--cyan);
+            padding-left: 1rem;
+            font-style: italic;
+        }
+        .sec-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.8rem;
+        }
+        .sec-head h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--navy);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .sec-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+        .sec-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            flex-shrink: 0;
+        }
+        .job-card {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 0.85rem 1.1rem;
+            border-left: 3px solid var(--cyan);
+            margin-bottom: 0.6rem;
+        }
+        .job-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.87rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .job-bullets {
+            margin-top: 0.45rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .job-bullets li {
+            font-size: 0.75rem;
+            color: #4a5568;
+            line-height: 1.5;
+            list-style: none;
+            display: flex;
+            gap: 6px;
+        }
+        .job-bullets li::before {
+            content: "›";
+            color: var(--cyan);
+            font-size: 0.95rem;
+            line-height: 1.2;
+            flex-shrink: 0;
+        }
+        .subj-tag {
+            background: #f0fffe;
+            border: 1px solid rgba(0,194,203,0.25);
+            color: #0d4a50;
+            font-size: 0.65rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+        }
+        .subj-tag.en {
+            background: #fff8f0;
+            border-color: rgba(255,92,53,0.25);
+            color: #7a3010;
+        }
+        .uni-subjects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            margin-top: 4px;
+        }
+        .teach-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .teach-item {
+            font-size: 0.73rem;
+            color: #4a5568;
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            line-height: 1.4;
+        }
+        .teach-item::before {
+            content: "▸";
+            color: var(--cyan);
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            margin-top: 1px;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #0d1b2a, #1a3550);
+            border-radius: 10px;
+            padding: 0.85rem 1.1rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+        .highlight-box .job-title {
+            color: #fff;
+        }
+        .highlight-box .job-bullets li {
+            color: rgba(255,255,255,0.8);
+        }
+        .highlight-box .job-bullets li::before {
+            color: #00f0ff;
+        }
+        .badge-new {
+            background: var(--accent);
+            color: #fff;
+            font-size: 0.57rem;
+            padding: 2px 6px;
+            border-radius: 10px;
+            vertical-align: middle;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+        .uni-block {
+            margin-bottom: 0.5rem;
+        }
+        .uni-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.83rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .uni-note {
+            font-size: 0.69rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-left: 4px;
+            font-weight: 400;
+        }
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.45rem;
+        }
+        .edu-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.6rem 0.85rem;
+            border: 1px solid var(--border);
+        }
+        .edu-year {
+            font-size: 0.62rem;
+            color: var(--cyan);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .edu-school {
+            font-size: 0.79rem;
+            font-weight: 500;
+            color: var(--navy);
+            margin-top: 2px;
+            line-height: 1.3;
+        }
+        .edu-field {
+            font-size: 0.69rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+        .cert-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .cert-pill {
+            background: var(--navy);
+            color: rgba(255,255,255,0.9);
+            font-size: 0.69rem;
+            padding: 4px 11px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,194,203,0.3);
+        }
+        .footer {
+            font-size: 0.58rem;
+            color: rgba(255,255,255,0.22);
+            line-height: 1.5;
+            margin-top: auto;
+        }
+        .private-card {
+            border: 1px solid rgba(0,194,203,0.25);
+            background: rgba(0,194,203,0.08);
+            border-radius: 10px;
+            padding: 0.7rem 0.75rem;
+        }
+        .private-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.92);
+            font-weight: 600;
+            margin-bottom: 0.45rem;
+        }
+        .private-title .contact-icon {
+            width: 16px;
+            height: 16px;
+            flex-basis: 16px;
+            margin-top: 0;
+        }
+        .qr-wrap {
+            display: grid;
+            grid-template-columns: 92px 1fr;
+            gap: 0.65rem;
+            align-items: center;
+        }
+        .qr-img {
+            width: 92px;
+            height: 92px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        .private-note {
+            font-size: 0.66rem;
+            line-height: 1.45;
+            color: rgba(255,255,255,0.8);
+        }
+        .session-id {
+            margin-top: 0.35rem;
+            font-size: 0.58rem;
+            line-height: 1.35;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            color: rgba(255,255,255,0.75);
+            word-break: break-all;
+        }
+        @media (max-width: 900px) {
+            .cv-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media print {
+            .private-card {
+                background: #f7fbff !important;
+                border-color: var(--border) !important;
+            }
+            .private-title,
+            .private-note,
+            .session-id {
+                color: var(--navy) !important;
+            }
+            .qr-img {
+                border-color: var(--border) !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+        <symbol id="i-phone" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M6.6 2.8c.8-.8 2-.9 2.9-.3l2.3 1.5c.9.6 1.2 1.8.7 2.7l-1.2 2.2c1.6 2.5 3.6 4.5 6.1 6.1l2.2-1.2c.9-.5 2.1-.2 2.7.7l1.5 2.3c.6.9.5 2.1-.3 2.9l-1.1 1.1c-1 1-2.6 1.4-4 1-6.8-2-12.2-7.4-14.2-14.2-.4-1.4 0-3 1-4l1.1-1.1Z"/>
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11A2.5 2.5 0 0 1 17.5 20h-11A2.5 2.5 0 0 1 4 17.5v-11Zm2 .1 6 5a1.5 1.5 0 0 0 2 0l6-5A.5.5 0 0 0 19.7 6H6.3a.5.5 0 0 0-.3.6Z"/>
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.9 9H16c-.1-2-.6-3.8-1.3-5.2A8 8 0 0 1 18.9 11ZM12 4.1c1.1 1.4 1.8 3.6 2 6.9h-4c.2-3.3.9-5.5 2-6.9ZM5.1 13H8c.1 2 .6 3.8 1.3 5.2A8 8 0 0 1 5.1 13Zm2.9-2H5.1a8 8 0 0 1 4.2-5.2C8.6 7.2 8.1 9 8 11Zm4 8c-1.1-1.4-1.8-3.6-2-6.9h4c-.2 3.3-.9 5.5-2 6.9Zm2.7-.8c.7-1.4 1.2-3.2 1.3-5.2h2.9a8 8 0 0 1-4.2 5.2Z"/>
+        </symbol>
+        <symbol id="i-telegram" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M21.8 4.6c.2-.8-.5-1.5-1.3-1.2L2.9 10.3c-.9.4-.8 1.7.1 1.9l4.8 1.4 1.8 5.7c.3.9 1.5 1 2 .2l2.7-4.2 5 3.7c.8.6 2 0 2.2-1L21.8 4.6Zm-15 8.2 10.6-6.5-8.6 7.9-.3 3.1-1.1-3.5-.6-.2Z"/>
+        </symbol>
+        <symbol id="i-threema" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2a9.5 9.5 0 0 0-6 16.8V22a.9.9 0 0 0 1.4.7l3.2-2.1c.5.1 1 .2 1.4.2a9.5 9.5 0 1 0 0-19Zm-3 7.4a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm6 0a1.3 1.3 0 1 1 0 2.6 1.3 1.3 0 0 1 0-2.6Zm-6 5.3a.9.9 0 0 1 1.2.3 2.1 2.1 0 0 0 3.6 0 .9.9 0 0 1 1.5 1 3.9 3.9 0 0 1-6.6 0 .9.9 0 0 1 .3-1.3Z"/>
+        </symbol>
+        <symbol id="i-matrix" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7 3h2v2H7v14h2v2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm8 0h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2v-2h2V5h-2V3Z"/>
+            <path fill="currentColor" d="M10.2 8h1.6l-.3 2H13l.3-2h1.6l-.3 2H16v1.6h-1.6l-.3 2H16V15h-1.6l-.3 2h-1.6l.3-2h-1.5l-.3 2h-1.6l.3-2H8V13.6h1.6l.3-2H8V10h1.6l.3-2Zm2.2 3.6h-1.5l-.3 2h1.5l.3-2Z"/>
+        </symbol>
+        <symbol id="i-link" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M10.6 13.4a1 1 0 0 1 0-1.4l3.4-3.4a3 3 0 0 1 4.2 4.2l-2.2 2.2a3 3 0 0 1-4.2 0 1 1 0 1 1 1.4-1.4 1 1 0 0 0 1.4 0l2.2-2.2a1 1 0 1 0-1.4-1.4l-3.4 3.4a1 1 0 0 1-1.4 0Zm2.8-2.8a1 1 0 0 1 0 1.4l-3.4 3.4A3 3 0 0 1 5.8 11.2l2.2-2.2a3 3 0 0 1 4.2 0 1 1 0 0 1-1.4 1.4 1 1 0 0 0-1.4 0l-2.2 2.2a1 1 0 1 0 1.4 1.4l3.4-3.4a1 1 0 0 1 1.4 0Z"/>
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M4.8 4.4a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4ZM3.6 9.6h2.4V20H3.6V9.6Zm6 0h2.3v1.4h.1c.5-.9 1.7-1.8 3.5-1.8 3 0 3.6 2 3.6 4.6V20h-2.4v-5.1c0-1.2 0-2.7-1.7-2.7-1.7 0-2 1.3-2 2.6V20H9.6V9.6Z"/>
+        </symbol>
+        <symbol id="i-behance" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8.2 11.2c.8 0 1.4-.5 1.4-1.4 0-.9-.6-1.4-1.5-1.4H5.6v2.8h2.6Zm.2 6.1c1 0 1.7-.6 1.7-1.6 0-1.1-.7-1.6-1.9-1.6H5.6v3.2h2.8ZM3.6 6.6h4.9c2.2 0 3.6 1.1 3.6 3 0 1.2-.6 2.2-1.7 2.6v.1c1.5.3 2.3 1.5 2.3 3.1 0 2.2-1.7 3.6-4.2 3.6H3.6V6.6Zm15.4 4.7c-1.3 0-2.1.9-2.3 2.2h4.5c-.1-1.3-.9-2.2-2.2-2.2Zm4.4 4.1h-6.8c.2 1.5 1.1 2.5 2.6 2.5.9 0 1.7-.4 2.1-1h2c-.6 1.9-2.3 3-4.2 3-2.7 0-4.6-1.9-4.6-4.6 0-2.6 1.8-4.7 4.5-4.7 2.9 0 4.6 2.4 4.4 4.8Zm-6.4-6.9h4.1v1.2H17v-1.2Z"/>
+        </symbol>
+    </svg>
+    <div class="cv-wrap">
+        <aside class="sidebar">
+            <div class="avatar-area">
+                <div class="avatar-ring"></div>
+                <div class="sidebar-name">Przemysław<br>Żarnecki</div>
+                <div class="sidebar-role">Backend Dev · DevOps · Wykładowca</div>
+            </div>
+
+            <div class="s-section">
+                <div class="s-label">Telefon &amp; Email</div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-phone" xlink:href="#i-phone"></use></svg>
+                    <a href="tel:+48503957174">+48 503-957-174</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-mail" xlink:href="#i-mail"></use></svg>
+                    <a href="mailto:pzarnecki@protonmail.com">pzarnecki@protonmail.com</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-globe" xlink:href="#i-globe"></use></svg>
+                    <a href="https://zarnecki.org" target="_blank" rel="noreferrer">zarnecki.org</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="s-section">
+                <div class="s-label">Komunikatory</div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-telegram" xlink:href="#i-telegram"></use></svg>
+                    <a href="https://t.me/przemekz" target="_blank" rel="noreferrer">t.me/przemekz</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-threema" xlink:href="#i-threema"></use></svg>
+                    <a href="https://threema.id/38838EPX" target="_blank" rel="noreferrer">Threema: 38838EPX</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-matrix" xlink:href="#i-matrix"></use></svg>
+                    <a href="https://matrix.to/#/@pzarnecki:matrix.org" target="_blank" rel="noreferrer">@pzarnecki:matrix.org</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="s-section">
+                <div class="s-label">Prywatna komunikacja</div>
+                <div class="private-card">
+                    <div class="private-title">
+                        <svg class="contact-icon" aria-hidden="true"><use href="#i-link" xlink:href="#i-link"></use></svg>
+                        Session
+                    </div>
+                    <div class="qr-wrap">
+                        <img
+                            class="qr-img"
+                            alt="Kod QR do Session"
+                            src="https://quickchart.io/qr?text=05A68391550B17C0BE4CC192128EB56AA29D3A5BF24C4FB63FF9A3B46CDA571F54&size=160&margin=0&ecLevel=M"
+                        >
+                        <div>
+                            <div class="private-note">Zeskanuj kod QR, jeśli wolisz prywatny kontakt.</div>
+                            <div class="session-id">05a68391550b17c0be4cc192128eb56aa29d3a5bf24c4fb63ff9a3b46cda571f54</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="s-section">
+                <div class="s-label">Profile &amp; Projekty</div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-linkedin" xlink:href="#i-linkedin"></use></svg>
+                    <a href="https://linkedin.com/in/przemyslawzarnecki" target="_blank" rel="noreferrer">LinkedIn: przemyslawzarnecki</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-behance" xlink:href="#i-behance"></use></svg>
+                    <a href="https://www.behance.net/zarnecki" target="_blank" rel="noreferrer">behance.net/zarnecki</a>
+                </div>
+                <div class="contact-row">
+                    <svg class="contact-icon" aria-hidden="true"><use href="#i-link" xlink:href="#i-link"></use></svg>
+                    <a href="https://dev.zarnecki.org/pz-teacher" target="_blank" rel="noreferrer">dev.zarnecki.org/pz-teacher</a>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="s-section">
+                <div class="s-label">Umiejętności</div>
+                <div>
+                    <span class="skill-tag hot">DevOps #1</span>
+                    <span class="skill-tag hot">CI/CD</span>
+                    <span class="skill-tag hot">Forgeyo</span>
+                    <span class="skill-tag hot">FastAPI</span>
+                    <span class="skill-tag hot">Django</span>
+                    <span class="skill-tag">Docker/Podman</span>
+                    <span class="skill-tag">Konteneryzacja</span>
+                    <span class="skill-tag">Proxmox</span>
+                    <span class="skill-tag">Linux/Windows/MacOS</span>
+                    <span class="skill-tag">PHP/MySQL</span>
+                    <span class="skill-tag">WordPress/Joomla</span>
+                    <span class="skill-tag">MS Office/OnlyOffice</span>
+                    <span class="skill-tag">Google Workspace</span>
+                    <span class="skill-tag">MS Teams/Slack</span>
+                    <span class="skill-tag">Nextcloud/MatterMost</span>
+                    <span class="skill-tag">Azure/AWS</span>
+                </div>
+            </div>
+
+            <div class="s-section">
+                <div class="s-label">Języki</div>
+                <div class="lang-row"><span>Angielski</span><span class="lang-lvl">ZAAWANSOWANY</span></div>
+                <div class="lang-row"><span>Niemiecki</span><span class="lang-lvl">KOMUNIKATYWNY</span></div>
+                <div class="lang-row"><span>Francuski</span><span class="lang-lvl">PODSTAWY</span></div>
+            </div>
+
+            <div class="s-section">
+                <div class="s-label">Zainteresowania</div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px">
+                    <span class="skill-tag">🎮 Gry</span>
+                    <span class="skill-tag">🎬 Kino</span>
+                    <span class="skill-tag">🎵 Muzyka</span>
+                    <span class="skill-tag">✈️ Podróże</span>
+                    <span class="skill-tag">📚 Czytanie</span>
+                </div>
+            </div>
+
+            <div class="footer">Wyrażam zgodę na przetwarzanie danych osobowych dla potrzeb rekrutacji (RODO UE 2016/679).</div>
+        </aside>
+
+        <main class="main">
+            <div class="main-header">
+                <div class="main-name">PRZEMYSŁAW <span>ŻARNECKI</span></div>
+                <div class="main-title">Backend Developer · DevOps Engineer · Wykładowca akademicki · Trener IT</div>
+            </div>
+
+            <p class="bio">Backend developer i inżynier DevOps z ponad 18-letnim doświadczeniem w IT. Specjalizuję się w FastAPI, Django i środowiskach CI/CD. Równolegle wykładam na uczelniach wyższych i prowadzę szkolenia IT dla firm.</p>
+
+            <div class="section">
+                <div class="sec-head"><div class="sec-dot"></div><h2>Działalność akademicka</h2><div class="sec-line"></div></div>
+
+                <div class="job-card" style="border-left-color:#7c3aed">
+                    <div class="job-title">Uniwersytet WSB Merito Wrocław <span class="badge-new">ETAT</span></div>
+                    <div class="uni-subjects">
+                        <span class="subj-tag">Zarządzanie Linuksem</span>
+                        <span class="subj-tag">Programowanie Python</span>
+                        <span class="subj-tag">Konteneryzacja i orkiestracja</span>
+                        <span class="subj-tag">Projektowanie stron</span>
+                        <span class="subj-tag">Business Intelligence</span>
+                        <span class="subj-tag">Big Data</span>
+                        <span class="subj-tag">Sztuczna Inteligencja</span>
+                        <span class="subj-tag">Testowanie oprogramowania</span>
+                        <span class="subj-tag">Zarządzanie projektami</span>
+                        <span class="subj-tag">Zarządzanie serwerami</span>
+                        <span class="subj-tag">Narzędzia CI/CD</span>
+                        <span class="subj-tag">Social Media IT</span>
+                    </div>
+                </div>
+
+                <div class="job-card">
+                    <div class="job-title" style="margin-bottom:0.5rem">Pozostałe uczelnie</div>
+                    <div class="uni-block">
+                        <div class="uni-name">Ideis <span class="uni-note">(d. Uniwersytet DSW) · Wrocław</span></div>
+                        <div class="uni-subjects">
+                            <span class="subj-tag">Podstawy programowania</span>
+                            <span class="subj-tag">IT Management</span>
+                            <span class="subj-tag">Narzędzia IT w biznesie</span>
+                        </div>
+                    </div>
+                    <div class="uni-block" style="margin-top:0.5rem">
+                        <div class="uni-name">AtINS <span class="uni-note">Akademia Techniczno-Informatyczna · Wrocław</span></div>
+                        <div class="uni-subjects">
+                            <span class="subj-tag">Zarządzanie Linuksem</span>
+                            <span class="subj-tag">Konteneryzacja</span>
+                            <span class="subj-tag">Zarządzanie serwerami</span>
+                            <span class="subj-tag en">Linux Administration (EN)</span>
+                            <span class="subj-tag en">Computer Architecture (EN)</span>
+                            <span class="subj-tag en">Backend Development (EN)</span>
+                            <span class="subj-tag en">Cloud & DevOps (EN)</span>
+                        </div>
+                    </div>
+                    <div class="uni-block" style="margin-top:0.5rem">
+                        <div class="uni-name">WAB / ATA <span class="uni-note">(d. WSH) · Wrocławska Akademia Biznesu</span></div>
+                        <div class="uni-subjects">
+                            <span class="subj-tag">Projektowanie stron internetowych</span>
+                            <span class="subj-tag">Podstawy programowania</span>
+                            <span class="subj-tag en">Linux Administration (EN)</span>
+                            <span class="subj-tag en">Computer Architecture (EN)</span>
+                        </div>
+                    </div>
+                    <div class="uni-block" style="margin-top:0.5rem">
+                        <div class="uni-name">Politechnika Wrocławska</div>
+                        <div class="uni-subjects">
+                            <span class="subj-tag">Podstawy programowania</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-head"><div class="sec-dot"></div><h2>Doświadczenie zawodowe</h2><div class="sec-line"></div></div>
+
+                <div class="highlight-box">
+                    <div class="job-title" style="margin-bottom:0.5rem">Favor Przedsiębiorstwo Usługowe — Właściciel (02.2007 – 02.2025)</div>
+                    <div class="job-bullets">
+                        <li><strong>Repair Expert / CI</strong> — kalkulator ubezpieczeniowy Link4</li>
+                        <li>Backend developer: FastAPI, Django REST API, PHP/MySQL, WordPress, Joomla</li>
+                        <li>DevOps: wdrożenia, Docker/Podman, Proxmox, Azure DevOps, AWS, kampanie polityczne i marketingowe</li>
+                        <li>Szkolenia IT: Abylity IT, Verticom Wsparcie IT, Centrum Eduma, J&M Consulting, IT7, I-Trener, NOVA, JavaTech, ROE, Syntea, Epsilon, DZDZ, TEB Akademia</li>
+                        <li>Treści dla mediów IT: PC World, Linux Magazine, Linux+, Xploit, Hackin9, Dobre Programy, Linux+Extra!, Logo, Portal Gametrance</li>
+                        <li>Szkolenia ekonomiczne: ABC przedsiębiorczości, kadry/płace, księgowość — GoWork, WSB, BPR, Europejska Akademia, NGO and Business Service, INFOS, Centrum Biznesu</li>
+                    </div>
+                </div>
+
+                <div class="job-card" style="border-left-color:#0f6e56">
+                    <div class="job-title">EAHIP — Trener cyberbezpieczeństwa</div>
+                    <div class="job-bullets">
+                        <li>Szkolenia w ramach projektu <strong>„Cyberbezpieczny Samorząd"</strong> (FERC 2021–2027, CPPC / NASK)</li>
+                        <li>Podnoszenie kompetencji kadry w ochronie informacji, reagowaniu na incydenty, politykach bezpieczeństwa</li>
+                    </div>
+                </div>
+
+                <div class="job-card" style="border-left-color:#0f6e56">
+                    <div class="job-title">BPR Consulting — Trener IT dla nauczycieli</div>
+                    <div class="job-bullets">
+                        <li>Szkolenia IT — narzędzia cyfrowe, platformy e-learningowe, praca zdalna w oświacie</li>
+                    </div>
+                </div>
+
+                <div class="job-card" style="border-left-color:#0f6e56">
+                    <div class="job-title">Fundacja VCC — Egzaminator TIK</div>
+                    <div class="job-bullets">
+                        <li>Egzaminowanie kandydatów w kompetencjach cyfrowych (TIK / VCC)</li>
+                    </div>
+                </div>
+
+                <div class="job-card" style="border-left-color:#94a3b8">
+                    <div class="job-title">Obsługa techniczna egzaminów zawodowych — Terranowa · Epsilon Oława</div>
+                    <div class="job-bullets">
+                        <li>Techniczna obsługa egzaminów zawodowych — przygotowanie stanowisk, sieci i oprogramowania</li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-head"><div class="sec-dot"></div><h2>Pozostałe doświadczenie — nauczanie</h2><div class="sec-line"></div></div>
+                <div class="teach-list">
+                    <div class="teach-item">Szkoła Podstawowa nr 63 we Wrocławiu — nauczyciel informatyki</div>
+                    <div class="teach-item">Zespół Szkół nr 8 we Wrocławiu — nauczyciel przedmiotów zawodowych IT</div>
+                    <div class="teach-item">Husarz Wojskowa Szkoła Średnia we Wrocławiu — nauczyciel informatyki</div>
+                    <div class="teach-item">Międzynarodowa Wyższa Szkoła Informatyki i Transportu — nauczyciel</div>
+                    <div class="teach-item">III Liceum Ogólnokształcące we Wrocławiu — nauczyciel przedsiębiorczości</div>
+                    <div class="teach-item">Zespół Szkół Ekonomicznych w Brzegu — nauczyciel przedsiębiorczości</div>
+                    <div class="teach-item">I Liceum Ogólnokształcące w Oławie — nauczyciel przedsiębiorczości</div>
+                    <div class="teach-item">CKUiZ w Oławie — nauczyciel</div>
+                    <div class="teach-item">ZLG Długołęka — nauczyciel</div>
+                    <div class="teach-item">CONSULT — koordynator projektu SORE, powiat wrocławski</div>
+                    <div class="teach-item">Stowarzyszenie EKO IDEA — animator społeczności lokalnych</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-head"><div class="sec-dot"></div><h2>Edukacja</h2><div class="sec-line"></div></div>
+                <div class="edu-grid">
+                    <div class="edu-card">
+                        <div class="edu-year">2005</div>
+                        <div class="edu-school">Uniwersytet Wrocławski</div>
+                        <div class="edu-field">Wydział Nauk Społecznych</div>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-year">2008</div>
+                        <div class="edu-school">Centrum Edukacji Nauczycielskiej</div>
+                        <div class="edu-field">Nauczyciel PP w szkole ponadgimnazjalnej</div>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-year">2019</div>
+                        <div class="edu-school">Wrocławska Wyższa Szkoła Informatyki Stosowanej</div>
+                        <div class="edu-field">Sieci i systemy komputerowe</div>
+                    </div>
+                    <div class="edu-card">
+                        <div class="edu-year">2019</div>
+                        <div class="edu-school">WSB w Toruniu</div>
+                        <div class="edu-field">Informatyka dla nauczycieli</div>
+                    </div>
+                    <div class="edu-card" style="border-left:3px solid #7c3aed;background:#faf8ff">
+                        <div class="edu-year">w toku</div>
+                        <div class="edu-school">Technical University of Varna <span style="font-size:0.62rem;color:#7c3aed;font-weight:600;margin-left:4px">PhD Candidate</span></div>
+                        <div class="edu-field">Erasmus+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="sec-head"><div class="sec-dot"></div><h2>Certyfikaty &amp; dodatkowe</h2><div class="sec-line"></div></div>
+                <div class="cert-grid">
+                    <span class="cert-pill">VCC Digcomp — Certyfikat Trenerski</span>
+                    <span class="cert-pill">VCC TIK — Certyfikat Trenerski</span>
+                    <span class="cert-pill">Novell Training Services</span>
+                    <span class="cert-pill">Revas Trener Symulacji Biznesowych</span>
+                    <span class="cert-pill">Certified Microsoft Innovative Educator</span>
+                    <span class="cert-pill">Kurs kierownika wycieczek</span>
+                    <span class="cert-pill">Kurs pedagogiczny</span>
+                    <span class="cert-pill">Prawo jazdy kat. B</span>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
